@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  background-color: #CCC;
+  font-family: sans-serif;
+}
+
+.app {
+  margin: 100px auto;
+  padding: 20px;
+  width: 300px;
+  background-color: #FFF;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid #888;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+}

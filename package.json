@@ -1,0 +1,23 @@
+{
+  "name": "react-sane-router",
+  "version": "1.0.0",
+  "main": "./lib/index",
+  "scripts": {
+    "build": "./build/compile.sh",
+    "build-examples": "./build/compile-examples.sh",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "history": "1.13.1",
+    "url-match": "0.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=0.13.x"
+  },
+  "devDependencies": {
+    "coffee-react": "4.0.0",
+    "react": "0.14.3",
+    "react-dom": "0.14.3",
+    "webpack": "1.12.9"
+  }
+}
