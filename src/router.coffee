@@ -9,11 +9,12 @@ StatusCodes = require './status-codes'
 class Router
   StatusCodes: StatusCodes
 
-  constructor: ({ contentStore, dispatcher, historyManager, locationStore }) ->
-    @_contentStore = contentStore
-    @_dispatcher  = dispatcher
-    @_historyManager = historyManager
-    @_locationStore = locationStore
+  constructor: (services) ->
+    @_contentStore = services.contentStore
+    @_dispatcher  = services.dispatcher
+    @_historyManager = services.historyManager
+    @_locationStore = services.locationStore
+    @_routeStore = services.routeStore
 
   createTargetElement: ->
     return <Target contentStore={@_contentStore} />
@@ -80,7 +81,7 @@ class Router
 
   _routeToLocation: (location) ->
     currentTarget = @_contentStore.getCurrentTarget()
-    nextTarget = @_contentStore.getLocationTarget(location)
+    nextTarget = @_routeStore.getLocationTarget(location)
     return if areTargetsEqual(currentTarget, nextTarget)
 
     @_dispatcher.emit('target-activate', nextTarget)

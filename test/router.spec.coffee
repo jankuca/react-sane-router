@@ -8,6 +8,7 @@ Router = require '../lib/router'
 MockContentStore = require '../lib/stores/content-store.mock'
 MockHistoryManager = require './_mocks/history-manager.mock'
 MockLocationStore = require '../lib/stores/location-store.mock'
+MockRouteStore = require '../lib/stores/route-store.mock'
 
 
 it.beforeEach (test) ->
@@ -15,6 +16,7 @@ it.beforeEach (test) ->
   test.context.dispatcher = new EventEmitter()
   test.context.historyManager = new MockHistoryManager()
   test.context.locationStore = new MockLocationStore()
+  test.context.routeStore = new MockRouteStore()
 
   test.context.createRouter = ->
     router = new Router(test.context)
@@ -60,7 +62,7 @@ it 'should activate the target for the effective location ' +
   expectedTargetKey = 'target2'
 
   test.context.locationStore.setEffectiveLocationInTest(effectiveLocation)
-  test.context.contentStore.setLocationTargetInTest effectiveLocation,
+  test.context.routeStore.setLocationTargetInTest effectiveLocation,
     targetPath: expectedTargetKey
 
   activated = false
@@ -100,7 +102,7 @@ it 'should activate the target for the effective location ' +
   expectedTargetKey = 'target2'
 
   test.context.locationStore.setEffectiveLocationInTest(effectiveLocation)
-  test.context.contentStore.setLocationTargetInTest effectiveLocation,
+  test.context.routeStore.setLocationTargetInTest effectiveLocation,
     targetPath: expectedTargetKey
 
   activated = false
@@ -122,7 +124,7 @@ it 'should not re-activate a currently active target ' +
   test.context.locationStore.setEffectiveLocationInTest(effectiveLocation)
   test.context.contentStore.setCurrentTargetInTest
     targetPath: expectedTargetKey
-  test.context.contentStore.setLocationTargetInTest effectiveLocation,
+  test.context.routeStore.setLocationTargetInTest effectiveLocation,
     targetPath: expectedTargetKey
 
   test.context.dispatcher.once 'target-activate', ({ targetPath }) ->
@@ -178,7 +180,7 @@ it 'should not re-activate a currently active target ' +
   test.context.locationStore.setEffectiveLocationInTest(effectiveLocation)
   test.context.contentStore.setCurrentTargetInTest
     targetPath: expectedTargetKey
-  test.context.contentStore.setLocationTargetInTest effectiveLocation,
+  test.context.routeStore.setLocationTargetInTest effectiveLocation,
     targetPath: expectedTargetKey
 
   test.context.dispatcher.once 'target-activate', ({ targetPath }) ->
@@ -197,7 +199,7 @@ it 'should re-activate the currently active target ' +
   test.context.locationStore.setEffectiveLocationInTest(effectiveLocation)
   test.context.contentStore.setCurrentTargetInTest
     targetPath: expectedTargetKey
-  test.context.contentStore.setLocationTargetInTest effectiveLocation,
+  test.context.routeStore.setLocationTargetInTest effectiveLocation,
     targetPath: expectedTargetKey
 
   reactivated = false
