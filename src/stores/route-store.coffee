@@ -17,7 +17,8 @@ class RouteStore extends EventEmitter
     { targetPath, params } = @_getLocationRoute(location)
 
     if /^\//.test(targetPath)
-      aliasedLocation = { pathname: targetPath }
+      aliasedPathname = @_createPathname(targetPath, params)
+      aliasedLocation = { pathname: aliasedPathname }
       return @getLocationTarget(aliasedLocation)
 
     return { targetPath, params }
@@ -36,6 +37,13 @@ class RouteStore extends EventEmitter
         return true
 
     return { targetPath, params }
+
+  _createPathname: (pattern, params) ->
+    applyParam = (pathname, key) ->
+      return pathname.replace(new RegExp(":#{key}", 'g'), params[key])
+
+    pathname = Object.keys(params).reduce(applyParam, pattern)
+    return pathname
 
   _handleRoutes: ({ routes }) =>
     @_routes = Object.keys(routes).map (pathnamePattern) =>

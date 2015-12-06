@@ -83,3 +83,21 @@ it 'should parse and return pathname parameters', (test) ->
   locationTarget = routeStore.getLocationTarget(location)
   test.is(locationTarget.targetPath, 'edit-project')
   test.same(locationTarget.params, { 'id': '123', 'slug': 'what-is-up' })
+
+
+it 'should pass parameters from an alias pathname to the aliased pathname',
+(test) ->
+  routeStore = test.context.createRouteStore()
+
+  test.context.dispatcher.emit 'routes-set',
+    routes:
+      '/projects/:date/:id/edit': '/projects/:date/:id/what-is-up/edit'
+      '/projects/:date/:id/:slug/edit': 'edit-project'
+
+  location = createLocation('/projects/2015-12-06/123/edit')
+  locationTarget = routeStore.getLocationTarget(location)
+  test.is(locationTarget.targetPath, 'edit-project')
+  test.same locationTarget.params,
+    'id': '123'
+    'date': '2015-12-06'
+    'slug': 'what-is-up'
