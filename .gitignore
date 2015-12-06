@@ -1,5 +1,6 @@
 example/lib/
 lib/
 node_modules/
+test-lib/
 .DS_Store
 npm-debug.log

@@ -5,7 +5,9 @@
   "scripts": {
     "build": "./build/compile.sh",
     "build-examples": "./build/compile-examples.sh",
-    "prepublish": "npm run build"
+    "build-test": "./build/compile-test.sh",
+    "prepublish": "npm run build",
+    "test": "npm run build && npm run build-test && ava test-lib/"
   },
   "dependencies": {
     "history": "1.13.1",
