@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "history": "1.13.1",
+    "invariant": "2.2.0",
     "url-match": "0.1.0"
   },
   "peerDependencies": {
