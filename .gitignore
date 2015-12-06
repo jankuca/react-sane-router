@@ -1,5 +1,5 @@
-example/lib/
-lib/
+example/src/
+src/
 node_modules/
 .DS_Store
 npm-debug.log
