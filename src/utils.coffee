@@ -1,4 +1,8 @@
 
+startsWith = (str, prefix) ->
+  return (str.substr(0, prefix.length) == prefix)
+
+
 areTargetsEqual = (a, b) ->
   return (
     a.targetPath == b.targetPath and
@@ -8,4 +12,5 @@ areTargetsEqual = (a, b) ->
 
 module.exports = {
   areTargetsEqual
+  startsWith
 }

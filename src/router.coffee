@@ -24,6 +24,9 @@ class Router
   dispose: ->
     @_disposeHistoryListener?.call(null)
 
+  setLocationBase: (locationBase) ->
+    @_dispatcher.emit('location-base-set', { locationBase })
+
   setRoutes: (routes) ->
     @_dispatcher.emit('routes-set', { routes })
     @_routeToCurrentLocation()
@@ -38,6 +41,10 @@ class Router
     @_routeToCurrentLocation()
 
   redirectToUrl: (url) ->
+    locationBase = @_locationStore.getLocationBase()
+    if locationBase
+      url = "#{locationBase}#{url}"
+
     @_historyManager.pushState(null, url)
 
   goBack: ->
@@ -66,10 +73,10 @@ class Router
     #     => /projects is redirected to /
     #   This has to be done via `replaceState()` based on `ContentStore` data.
     @_dispatcher.emit('location-set', { location })
-    @_routeToLocation(location)
+    @_routeToCurrentLocation()
 
   _routeToCurrentLocation: ->
-    location = @_locationStore.getCurrentLocation()
+    location = @_locationStore.getEffectiveLocation()
     @_routeToLocation(location)
 
   _routeToLocation: (location) ->

@@ -9,6 +9,17 @@
   var memoryRouter = createRouter({ historyDriver: 'memory' })
   ```
 
+- **pathname base** (root)
+
+  ```javascript
+  var router = createRouter({ locationBase: '/app' })
+  router.setRoutes({
+    '/my/path': 'my-target',
+  })
+  // Routes /app/my/path as /my/path, thus to the "my-target" target.
+  // Pathnames outside the /app namespace are ignored.
+  ```
+
 - **multiple instances** living side-by-side without interfering
 
   ```javascript

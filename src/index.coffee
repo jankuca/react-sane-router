@@ -9,7 +9,7 @@ StatusCodes = require './status-codes'
 Target = require './components/target'
 
 
-createRouter = ({ historyDriver } = {}) ->
+createRouter = ({ historyDriver, locationBase } = {}) ->
   historyManager = switch historyDriver
     when 'memory' then history.useQueries(history.createMemoryHistory)()
     else history.useQueries(history.createHistory)()
@@ -19,9 +19,13 @@ createRouter = ({ historyDriver } = {}) ->
   locationStore = new LocationStore({ dispatcher })
   router = new Router({ dispatcher, contentStore, historyManager, locationStore })
 
-  router.init()
   contentStore.init()
   locationStore.init()
+
+  if locationBase
+    router.setLocationBase(locationBase)
+
+  router.init()
 
   return router
 
