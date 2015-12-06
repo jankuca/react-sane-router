@@ -3,7 +3,7 @@ React = require 'react'
 Target = require './components/target'
 StatusCodes = require './status-codes'
 
-{ areTargetsEqual } = require './utils'
+{ areLocationsEqual, areTargetsEqual } = require './utils'
 
 
 class Router
@@ -59,6 +59,9 @@ class Router
     @_routeToCurrentLocation()
 
   _handleLocation: (location) =>
+    currentLocation = @_locationStore.getCurrentLocation()
+    return if areLocationsEqual(currentLocation, location)
+
     # TODO: Implement alias forwarding/backwarding.
     #   Forwarding:
     #     route(/ -> /projects) + route(/projects -> TARGET)

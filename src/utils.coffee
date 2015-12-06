@@ -3,6 +3,16 @@ startsWith = (str, prefix) ->
   return (str.substr(0, prefix.length) == prefix)
 
 
+areLocationsEqual = (a, b) ->
+  if a == b
+    return true
+
+  if !a or !b
+    return false
+
+  return (a.pathname == b.pathname)
+
+
 areTargetsEqual = (a, b) ->
   return (
     a.targetPath == b.targetPath and
@@ -11,6 +21,7 @@ areTargetsEqual = (a, b) ->
 
 
 module.exports = {
+  areLocationsEqual
   areTargetsEqual
   startsWith
 }

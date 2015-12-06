@@ -154,6 +154,20 @@ it 'should dispatch received locations', (test) ->
   test.is(dispatchedLocations[2], locations[2])
 
 
+it 'should not dispatch a received location ' +
+    'when it matches the current location', (test) ->
+  router = test.context.createRouter()
+
+  test.context.locationStore.setCurrentLocationInTest(createLocation('/what'))
+
+  dispatched = false
+  test.context.dispatcher.on 'location-set', ({ location }) ->
+    dispatched = true
+
+  test.context.historyManager.emitLocationInTest(createLocation('/what'))
+  test.is(dispatched, false, 'The location was dispatched.')
+
+
 it 'should not re-activate a currently active target ' +
     'after new target registration', (test) ->
   router = test.context.createRouter()
