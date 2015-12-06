@@ -79,8 +79,8 @@ class ContentStore extends EventEmitter
     @_updateCurrentTargetElement()
     @emit('change')
 
-  _handleTargetAdd: ({ targetKey, targetStates, targetStatusCode }) =>
-    @_targets[targetKey] = targetStates or targetStatusCode or null
+  _handleTargetAdd: ({ targetKey, content }) =>
+    @_targets[targetKey] = content or null
     @_updateCurrentTargetElement()
     @emit('change')
 

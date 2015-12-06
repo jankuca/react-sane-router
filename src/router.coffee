@@ -31,13 +31,8 @@ class Router
     @_dispatcher.emit('routes-set', { routes })
     @_routeToCurrentLocation()
 
-  registerTarget: (targetKey, targetStates) ->
-    if typeof targetStates == 'object'
-      @_dispatcher.emit('target-add', { targetKey, targetStates })
-    else
-      targetStatusCode = targetStates
-      @_dispatcher.emit('target-add', { targetKey, targetStatusCode })
-
+  registerTarget: (targetKey, target) ->
+    @_dispatcher.emit('target-add', { targetKey, target })
     @_routeToCurrentLocation()
 
   redirectToUrl: (url) ->
