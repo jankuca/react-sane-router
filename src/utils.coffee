@@ -14,6 +14,12 @@ areLocationsEqual = (a, b) ->
 
 
 areTargetsEqual = (a, b) ->
+  if a == b
+    return true
+
+  if !a or !b
+    return false
+
   return (
     a.targetPath == b.targetPath and
     JSON.stringify(a.params or {}) == JSON.stringify(b.params or {})
