@@ -56,7 +56,8 @@ class Router
       throw err
 
   reload: ->
-    @_routeToCurrentLocation()
+    target = @_contentStore.getCurrentTarget()
+    @_dispatcher.emit('target-activate', target)
 
   _handleLocation: (location) =>
     currentLocation = @_locationStore.getCurrentLocation()

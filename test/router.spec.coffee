@@ -187,6 +187,28 @@ it 'should not re-activate a currently active target ' +
   router.registerTarget(expectedTargetKey, -> <div />)
 
 
+it 'should re-activate the currently active target ' +
+    'on a reload request', (test) ->
+  router = test.context.createRouter()
+
+  effectiveLocation = createLocation('/what')
+  expectedTargetKey = 'target2'
+
+  test.context.locationStore.setEffectiveLocationInTest(effectiveLocation)
+  test.context.contentStore.setCurrentTargetInTest
+    targetPath: expectedTargetKey
+  test.context.contentStore.setLocationTargetInTest effectiveLocation,
+    targetPath: expectedTargetKey
+
+  reactivated = false
+  test.context.dispatcher.once 'target-activate', ({ targetPath }) ->
+    test.is(targetPath, expectedTargetKey)
+    reactivated = true
+
+  router.reload()
+  test.is(reactivated, true, 'The previously active target was not re-activated.')
+
+
 it 'should push a new history state on a redirect request', (test) ->
   router = test.context.createRouter()
 
