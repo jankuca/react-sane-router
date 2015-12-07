@@ -85,9 +85,9 @@ it 'should dispatch a target when registered', (test) ->
     content: -> <div />
 
   dispatched = false
-  test.context.dispatcher.once 'target-add', ({ targetKey, target }) ->
+  test.context.dispatcher.once 'target-add', ({ targetKey, content }) ->
     test.is(targetKey, expectedTarget.targetKey)
-    test.is(target, expectedTarget.content)
+    test.is(content, expectedTarget.content)
     dispatched = true
 
   router.registerTarget(expectedTarget.targetKey, expectedTarget.content)

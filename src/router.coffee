@@ -32,8 +32,8 @@ class Router
     @_dispatcher.emit('routes-set', { routes })
     @_routeToCurrentLocation()
 
-  registerTarget: (targetKey, target) ->
-    @_dispatcher.emit('target-add', { targetKey, target })
+  registerTarget: (targetKey, content) ->
+    @_dispatcher.emit('target-add', { targetKey, content })
     @_routeToCurrentLocation()
 
   redirectToUrl: (url) ->
