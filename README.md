@@ -146,6 +146,9 @@ npm install react-sane-router
 
 ## Examples
 
+- [Single Router](http://jankuca.github.io/react-sane-router/examples/single-router/)
+- [Multiple Routers](http://jankuca.github.io/react-sane-router/examples/multiple-routers/)
+
 Check out the `examples/` directory.
 
 You can build and run the examples on your machine:
