@@ -1,14 +1,17 @@
 {
   "name": "react-sane-router",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "main": "./lib/index",
   "scripts": {
     "build": "./build/compile.sh",
     "build-examples": "./build/compile-examples.sh",
-    "prepublish": "npm run build"
+    "build-test": "./build/compile-test.sh",
+    "prepublish": "npm run build",
+    "test": "npm run build && npm run build-test && ava test-lib/"
   },
   "dependencies": {
     "history": "1.13.1",
+    "invariant": "2.2.0",
     "url-match": "0.1.0"
   },
   "peerDependencies": {

@@ -46,6 +46,16 @@
   })
   ```
 
+- **route parameters**
+
+  ```javascript
+  router.setRoutes({
+    '/projects/:id/edit': 'edit',
+    '/edit/:id': '/projects/:id/edit', // alias with a parameter
+  })
+  router.registerTarget('edit', ({ id }) => { <EditForm id={id} /> })
+  ```
+
 - **seamless error page** registration, error page is just another target
 
   ```javascript

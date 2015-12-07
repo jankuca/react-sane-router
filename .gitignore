@@ -1,5 +1,5 @@
-example/src/
 src/
 node_modules/
+test-lib/
 .DS_Store
 npm-debug.log
